@@ -1,6 +1,7 @@
 const container = document.querySelector('.container');
 const wordTest = document.querySelector(".word");
 const wordHint = document.querySelector(".hint span");
+const timeText = document.querySelector(".time b");
 const inputField = document.querySelector("input");
 const refreshWord = document.querySelector(".refresh-word");
 const checkBtn = document.querySelector(".check-word");
@@ -10,10 +11,22 @@ const alert = document.querySelector('.alert');
 const closeModal = document.querySelector('#close-btn');
 const nextWordBtn = document.querySelector('.modal__button');
 
-let correctWord;
+let correctWord, timer;
 
+
+const initTimer = maxTime => {
+      timer = setInterval(() => {
+            if(maxTime > 0) {
+                  maxTime--; // decrement maxTime by -1
+                  return timeText.innerText = maxTime;
+            }
+            clearInterval(timer);
+            alert.innerText = 'Time up: ' + correctWord.toUpperCase() + ' is the correct word';
+      }, 1000);
+}
 
 const initGame = () => {
+      initTimer(30); // calling the timer function with passing 30 as maxTime value
       let randomObj = words[Math.floor(Math.random() * words.length)]; // getting random object from words
       let wordArray = randomObj.word.split(""); // splitting each letter of random word
       for (let i = wordArray.length - 1; i > 0; i--) {
@@ -32,6 +45,7 @@ const initGame = () => {
       wordHint.innerText = randomObj.hint; // passing Hint sentence as hint
       correctWord = randomObj.word.toLowerCase(); // passing random word to correctWord
       inputField.value = null;
+      inputField.setAttribute("maxlength", correctWord.length);
       alert.innerText = '';
       console.log(wordArray, randomObj.word, randomObj.hint); 
 } 
