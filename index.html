@@ -5,6 +5,7 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Word Scramble Game | Stagbont</title>
+      <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
       <link rel="stylesheet" href="styles.css">
       <script src="js/words.js" defer></script>
       <script src="js/script.js" defer></script>
@@ -24,6 +25,22 @@
                         <button class="check-word">Check Word</button>
                   </div>    
             </div>
+      </div>
+
+      <div class="modal">
+           <div class="image__container">
+                  <img src="img/success.gif" class="success__img">
+           </div> 
+           <div class="modal__content">
+            <h2>Woohoo</h2>
+            <p class="message">Your Answer is Correct</p>
+            <div class="modal__buttons">
+                  <button class="next-word">Next Scramble</button>
+            </div>
+           </div>
+           <div class="close__btn" id="close-btn">
+            <i class="uil uil-times close__icon"></i>
+           </div>
       </div>
 </body>
 </html>
