@@ -20,6 +20,7 @@
                         <p class="hint">Time left: <span><b>30</b>s</span></p>
                   </div>
                   <input type="text" placeholder="Enter a valid word">
+                  <span class="alert"></span>
                   <div class="buttons">
                         <button class="refresh-word">Refresh Word</button>
                         <button class="check-word">Check Word</button>
@@ -28,19 +29,21 @@
       </div>
 
       <div class="modal">
-           <div class="image__container">
-                  <img src="img/success.gif" class="success__img">
-           </div> 
-           <div class="modal__content">
-            <h2>Woohoo</h2>
-            <p class="message">Your Answer is Correct</p>
-            <div class="modal__buttons">
-                  <button class="next-word">Next Scramble</button>
+            <div class="modal__wrapper">
+                  <div class="image__container">
+                         <img src="img/success.gif" class="success__img">
+                  </div> 
+                  <div class="modal__content">
+                        <h2>Woohoo</h2>
+                        <p class="message">Your Answer is Correct</p>
+                        <div class="modal__button">
+                              <button class="next-word">Next Scramble</button>
+                        </div>
+                  </div>
+                  <div class="close__btn" id="close-btn">
+                        <i class="uil uil-times close__icon"></i>
+                  </div>
             </div>
-           </div>
-           <div class="close__btn" id="close-btn">
-            <i class="uil uil-times close__icon"></i>
-           </div>
       </div>
 </body>
 </html>

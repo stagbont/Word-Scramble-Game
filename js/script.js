@@ -1,8 +1,14 @@
+const container = document.querySelector('.container');
 const wordTest = document.querySelector(".word");
 const wordHint = document.querySelector(".hint span");
 const inputField = document.querySelector("input");
 const refreshWord = document.querySelector(".refresh-word");
 const checkBtn = document.querySelector(".check-word");
+// Modal section
+const modalContainer = document.querySelector('.modal');
+const alert = document.querySelector('.alert');
+const closeModal = document.querySelector('#close-btn');
+const nextWordBtn = document.querySelector('.modal__button');
 
 let correctWord;
 
@@ -25,19 +31,39 @@ const initGame = () => {
       wordTest.innerText = wordArray.join(""); // passing shuffled word as word text
       wordHint.innerText = randomObj.hint; // passing Hint sentence as hint
       correctWord = randomObj.word.toLowerCase(); // passing random word to correctWord
+      inputField.value = null;
+      alert.innerText = '';
       console.log(wordArray, randomObj.word, randomObj.hint); 
 } 
 initGame();
 
 const checkWord = () => {
+
       let userWord = inputField.value.toLocaleLowerCase(); // getting user value
-      if(!userWord) return alert("please enter a word to check"); // if user didn't enter anything
+      if(!userWord) {
+            alert.innerText = 'Please enter a word'; // if user didn't enter anything
+      }
 
       // if user word doesn't match with the correct word
-      if (userWord !== correctWord) return alert(`Oops! ${userWord} is not correct word`);
+      if (userWord !== correctWord) {
+            alert.innerText = 'Try again: Your word is incorrect';
+      } else {
+            // if above two conditions fails, then show congrats alert because user word is correct
+           modalContainer.classList.add('show-modal');
+           
+           if(closeModal) {
+              closeModal.addEventListener('click', () => {
+                  modalContainer.classList.remove('show-modal');
+              });
+           }
 
-      // if above two conditions fails, then show congrats alert because user word is correct
-      alert(`Congrats! ${correctWord.toUpperCase()} is a correct word`);
+           if(nextWordBtn) {
+            nextWordBtn.addEventListener('click', () => {
+                  initGame();
+                  modalContainer.classList.remove('show-modal');
+            });
+           }
+      }
 }
 
 // listen for a click on the refresh word button
